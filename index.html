@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="Visual Programming for Text-to-Image Generation and Evaluation">
+  <meta name="keywords" content="visual programming, text-to-image generation, text-to-image evaluation, step-by-step">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>VP-T2I (2023)</title>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script> -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <!-- <link rel="icon" href="./static/images/favicon.svg"> -->
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+<body>
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">Visual Programming for <br>Text-to-Image Generation and Evaluation</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://j-min.io">Jaemin Cho</a></span>, &nbsp;
+            <span class="author-block">
+              <a href="https://aszala.com/">Abhay Zala</a></span>, &nbsp;
+            <span class="author-block">
+              <a href="https://www.cs.unc.edu/~mbansal/">Mohit Bansal</a>
+            </span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">UNC Chapel Hill</span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href="https://VP-T2I.github.io"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="https://github.com/j-min/VPGen"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>VPGen</span>
+                  </a>
+              </span>
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="https://github.com/aszala/VPEval" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                    <i class="fab fa-github"></i>
+                  </span>
+                  <span>VPEval</span>
+                </a>
+              </span>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="hero teaser">
+  <!-- <div class="container is-max-desktop"> -->
+  <div class="container">
+    <div class="hero-body" style="display: flex; justify-content: center;">
+      <!-- <h2 class="title is-3" style="text-align: center;">Summary Video</h2> -->
+      <video id="teaser" autoplay controls muted loop width="80%">
+        <source src="./static/videos/teaser_video_compressed.mp4" type="video/mp4">
+      </video>
+
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+
+          <p>
+          As large language models have demonstrated impressive performance in many domains, recent works have adopted language
+          models (LMs) as controllers of visual
+          modules for vision-and-language tasks. While existing work focuses on equipping
+          LMs with visual understanding, we propose two novel interpretable/explainable
+          visual programming frameworks for text-to-image (T2I) generation and evaluation.
+          </p>
+          <p>
+            First, we introduce <b>VPGen</b>, an interpretable step-by-step T2I generation framework that decomposes T2I generation into
+            three steps: object/count generation,
+            layout generation, and image generation. We employ an LM to handle the first
+            two steps (object/count generation and layout generation), by finetuning it on text-layout pairs. Our step-by-step T2I
+            generation framework provides stronger spatial
+            control than end-to-end models, the dominant approach for this task. Furthermore,
+            we leverage the world knowledge of pretrained LMs, overcoming the limitation of
+            previous layout-guided T2I works that can only handle predefined object classes.
+            We demonstrate that our VPGen has improved control in counts/spatial relations/scales of objects than state-of-the-art
+            T2I generation models.
+          </p>
+          <p>
+            Second, we
+            introduce <b>VPEval</b>, an interpretable and explainable evaluation framework for
+            T2I generation based on visual programming. Unlike previous T2I evaluations
+            with a single scoring model that is accurate in some skills but unreliable in others,
+            VPEval produces evaluation programs that invoke a set of visual modules that
+            are experts in different skills, and also provides visual+textual explanations of
+            the evaluation results. Our analysis shows that VPEval provides a more human-correlated evaluation for skill-specific and
+            open-ended prompts than widely used
+            single model-based evaluation.
+          </p>
+          <p>
+            We hope that our work encourages future progress
+            on interpretable/explainable generation and evaluation for T2I models.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+
+    <!-- Paper video. -->
+    <!-- <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Video</h2>
+        <div class="publication-video">
+          <iframe src="https://www.youtube.com/embed/MrKrnHhk8IA?rel=0&amp;showinfo=0"
+                  frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div> -->
+    <!--/ Paper video. -->
+  </div>
+</section>
+
+
+<section class="hero is-small">
+  <div class="hero-body">
+    <h2 class="title is-3" style="text-align: center;">Summary</h2>
+    <div class="container">
+      <center>
+        <img src="./static/images/teaser-min.png" alt="Teaser" width="80%">
+      </center>
+      
+      <div class="content has-text-justified">
+        Illustration of the proposed visual programming frameworks for text-to-image (T2I) generation.
+        In (a) <b>VPGen</b>, we first generate a list of objects, then object positions, and finally an image, by executing three modules step-by-step.
+        In (b) <b>VPEval</b>, we use evaluation programs with a mixture of evaluation modules that handle different skills and provide
+        visual+textual explanation of evaluation results.
+      </div>
+      
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">VPGen: Visual Programming for Step-by-Step Text-to-Image Generation</h2>
+        <div class="content has-text-justified">
+
+          VPGen is a novel visual programming framework for interpretable step-by-step text-to-image (T2I) generation. As
+          illustrated in the figure below, we decompose the text-to-image generation task into three steps: (1) object/count generation, (2)
+          layout generation, and (3) image generation.
+          VPGen employs an LM to handle the first two steps: (1) object/count generation and (2) layout
+          generation, making it easy to adapt the knowledge of pretrained LMs and enables generating layouts of objects that
+          are unseen during text-to-layout training (e.g., ‘pikachu’).
+          Then VPGen uses a layout-to-image module to generate images from the predicted layouts.
+          For the layout generation LM, we finetune Vicuna 13B on text-layout pair annotations on three public datasets: Flickr30K entities, MS COCO, and PaintSkills.
+          For the layout-to-image module, we use GLIGEN.
+
+        </div>
+
+        <img src="./static/images/vpgen.png" alt="Teaser" width="80%">
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">VPEval: Visual Programming for Explainable Evaluation of Text-to-Image Generation</h2>
+        <div class="content has-text-justified">
+
+          VPEval is a novel interpretable/explainable evaluation framework for T2I generation models, based on visual
+          programming.
+          Unlike existing T2I evaluation methods that compute image-text alignment scores with an end-to-end model,
+          our evaluation provides an interpretable program and visual+textual explanations for the evaluation results.
+          We propose two types of evaluation prompts: (1) skill-based evaluation and (2) open-ended evaluation.
+          In skill-based evaluation, we define five image generation skills and use a set of skill-specific prompts and evaluation
+          programs.
+          In open-ended evaluation, we use a diverse set of prompts that require multiple
+          image generation skills, and use a language model to dynamically generate an evaluation program for each text prompt.
+
+        </div>
+
+        <br>
+
+        <h3 class="title is-4">Evaluation Modules</h3>
+        <div class="content has-text-justified">
+          Unlike previous T2I evaluation methods that use a single model to evaluate all kinds of image generation skills,
+          we use a set of visual modules specialized for different tasks.
+          In the following figure, we show Python pseudocode of the evaluation modules.
+        </div>
+
+        <img src="./static/images/modules.png" alt="Teaser" width="80%">
+
+        <br><br>
+
+        <h3 class="title is-4">Skill-based Evaluation with Visual Programs</h3>
+        <div class="content has-text-justified">
+          For skill-based evaluation, we create text prompts with various skill-specific templates that are used for image
+          generation and evaluation with our programs.
+          In the figure below, we illustrate our skill-based evaluation in VPEval. Given text prompts that require different
+          image-generation skills, our evaluation programs measure image-text alignment scores by calling the relevant visual
+          modules. Unlike existing T2I evaluation methods, our evaluation programs provide visual+textual explanations of the
+          evaluation results.
+        </div>
+
+        <img src="./static/images/vpeval-min.png" alt="Teaser" width="80%">
+
+        <br><br>
+
+        <h3 class="title is-4">Open-ended Evaluation with Visual Program Generator LM</h3>
+        <div class="content has-text-justified">
+          <p>
+          Although our evaluation with skill-specific prompts covers five important and diverse image generation skills,
+          user-written prompts can sometimes be even more complex and need multiple evaluation criteria.
+          To handle such open-ended prompts, we extend the VPEvaL setup with evaluation programs using many visual
+          modules together.
+          We generate open-ended prompt evaluation programs with an LLM, then the evaluation programs output the average score and the visual+textual
+          explanations from their visual modules.
+          The program generation involves choosing which prompt elements to evaluate and which modules will evaluate those elements.
+          </p>
+          
+          <p>
+          As annotation of evaluation programs with open-ended prompts can be expensive,
+          we use ChatGPT to generate evaluation programs via in-context learning.
+          As illustrated in the figure below, we give ChatGPT the list of visual modules and example text
+          prompts and programs, then ask the model to generate a program given a new prompt.
+          For reproducible and accessible evaluation, we release the evaluation programs so that VPEval users do not have to generate
+          the programs.
+          We will also release a public LM (finetuned for evaluation program generation using ChatGPT outputs) that can run on local machines.
+          </p>
+        </div>
+
+        <img src="./static/images/open_program_generation-min.png" alt="Teaser" width="80%">
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@article{Cho2023VPT2I,
+    author = {Jaemin Cho and Abhay Zala and Mohit Bansal},
+    title = {Visual Programming for Text-to-Image Generation and Evaluation},
+    year = {2023},
+}</code></pre>
+  </div>
+</section>
+
+
+<footer class="footer">
+  <div class="container">
+    <!-- <div class="content has-text-centered">
+      <a class="icon-link"
+         href="./static/videos/nerfies_paper.pdf">
+        <i class="fas fa-file-pdf"></i>
+      </a>
+      <a class="icon-link" href="https://github.com/keunhong" class="external-link" disabled>
+        <i class="fab fa-github"></i>
+      </a>
+    </div> -->
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          The webpage was adapted from <a href="https://github.com/nerfies/nerfies.github.io">nerfies</a>.
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
