@@ -5,10 +5,11 @@ This is the repository that contains source code for the [VP-T2I website](https:
 If you find our project useful in your research, please cite the following paper:
 
 ```bibtex
-@article{Cho2023VPT2I,
-  author    = {Jaemin Cho and Abhay Zala and Mohit Bansal},
-  title     = {Visual Programming for Text-to-Image Generation and Evaluation},
-  year      = {2023},
+@inproceedings{Cho2023VPT2I,
+    author    = {Jaemin Cho and Abhay Zala and Mohit Bansal},
+    title     = {Visual Programming for Text-to-Image Generation and Evaluation},
+    booktitle = {NeurIPS},
+    year      = {2023},
 }
 ```
 
